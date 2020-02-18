@@ -2,9 +2,11 @@ language: python
 python:
   - '3.6'
 install:
-  - pip install ansible molecule apache-libcloud
+  - pip install -q ansible molecule apache-libcloud
 before_script:
-  - python --version && pip --version && ansible --version && ansible-lint --version && molecule --version
+  - ansible --version && ansible-lint --version && molecule --version
+script:
+  - echo OK
 notifications:
   slack:
     rooms:
