@@ -7,12 +7,14 @@ env:
     - secure: dUzO2Rrwv08E2vhpM6PGoqG7QGLsSOmc7Ka8jssvVyq/cjx/t8KqOKEIV9LoX7LkIZLvUQSjfUvuebn/7HRpdNFerZcSpeTm8FrgELEnB1Kcyx6wsdPY6GRWJqBjdHUu2DADbbZcswJSuV3S42G/1AHhmvNUSnonMNzery5DFenIBjorLa+lMyTZiI+oBiPYRkOtfxzJnP9F1DApK8nJMaj842JhhHkDVUKcqPGxPVSAgKbhuw7m/4d36bAMBsCxUbdLhqdz6k9CDeamWSVIgYclq/eHeUXkBPFTT6ObmEqoqXqLXi0ehHdmwyGihlTCLyEtOq0nabOI9kFiPNk6mCst7BLy+gB2rK+WmSk6hBRhHFyIlak/QXABnTPPfbNAB+zXpXX1x1lgPQVH+i+5L+jShyputWv53cPQNGI4SmSUljbZakwQpJYV+7jd318Yvt+UdUk1wopxjpI9mZFEFMozthiIOjWWDDQ1VuCbYNtOWi/tYQUoPzBZiI8ycZn+JXVdanvNbnR6xQIRH+5cPfVCYljzydBXg+dsteDFUF6F1Ewq0wA5LcM0zBvvuLf/28xJVSt3MADJMm9H2ubwlFOtWM5sQlL0WunMu/Mzs98oLznytQk6hVPTsEP/zgrex9MF8FUmxRbg4ZvfHVvgrgCKSCkKpDK+pBWc2WvwY94=
     - secure: KcC6E+6thp71bXZLxhFrzuEXcknrGY03ZT5TbTa/5EK6G9twuFD1TBKlQATU61DfX8NVOU+adL6Wlwme7WdbBICPudVFgkKNGOn199vU+3zDQpy3iW7K4aUZKuQkmyj/yOP8LHCQUAEDgejCzPrRNAmVSnJXRlcbXiy9wbXfk5+eUOyml/xK9LtCUQY4ufnLxUPCYoAAOMFcdS0HTFNpmUvYYzrM2YWmcLBhvBFuyDsaRyDz+4KRZoRaoUdwmrlUpqHfGllDBR0B+EX4/iUqx2fHSw2fiUK4OwCGSCIM//cB3w7yAC8BRs6Zabx0ASCqjjQuTrgF9xCcRGZ4vhPyhiGg2qq3K2pCjp7NOQnCBP7C5P/J63X4nI6OB+sAUoe2OSAgbaryyvdoGtXDqobNA1rOVJRqlYDT3/aEN9/VxNuyzH07EJev7DdszU50nP/UlD1p+dYUA0FB5KAh2YMDj5G+6mAI6ecfhj8v/LsXEF/2E84uSpCF0bZfa/eZvveS0Kp7G93tavgsuFJSpbZMpX/WQtPJWMeJdJYMO8Us/xnhoPz0O7RsONDmh9shKIEdR44sWsHp+tulLfE1zC5Q9YDNrke9XbuvBABdQH8Nx7iCAGtbqXgFUUkJECc2Gq9SFlQgAte9i5XYzsNSn9GVbA6Lz3fcVvtYOA03dDNut0I=
     - secure: AZ2L0HD8aVKPmBobG9aVSory+FX57uNa4RWFCaRsGiJq7uIYQBMPcyqXF9BYTNlrx4+8Bwe+7gEeSncAQFQVa/qaJbPN9kIucJ3g93GQhiKuENGmliw5RzhiWTUOCHt48WrKADmbH1UxzYBiEe/LcJWhR2wTLUQqNqjWm3Ii4pxYhz4odjYycq5bhX3gR66igD/e2Z1Dee9kCYeUzhJAAw0ADq4FE2WoHooWyBO4bjJ8RtuNCBUCEFBaUuSO83EFe4Wy1F4SN7CFc6L57EPRd4jf5ik2XxCSLNwICZ46tVwCNSTNb2Sq7tuXvFdcCfFuQ7GVGQKuZS/afohrAv6Bh1S72BiHE3+Mt+3euzpCcxQ2+xdH4nYlliAZxyFlHZOjEWmcKMTla2MURsPvle3N2DfFx3m0INBtpOh6XLeIInkZAXemOFsA6KFXD0t3VVPKDng44ad7x6JXaafg3LuLXWPKGb1fwSoBMj1gM5X6lVeFpcr4lwbd9+vknGES6+0zilA8vdIkRAKA3s6cDhfGRSO5YTeWafuIVuSzYQYqn3GTPSiWGEbC9sNexMCyAcWRAHYb4/GtgYG9KrhirU4NYFCZvf1q1K710mTMQC21gI2k3yMqfM+8LrTag4Xuo3ZHgxUJPeiW5TPXwcMDj8XgXJ2hd82t+1138Cfrl083nOk=
+    - MOLECULE_NO_LOG=0
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_ed371e731034_key -iv $encrypted_ed371e731034_iv -in gce.tar.enc -out gce.tar -d
   - tar -xvf gce.tar
   - mv google_compute_engine google_compute_engine.pub ~/.ssh/
   - chmod 0600 ~/.ssh/google_compute_engine
+  - pwd && ls -a
 
 install:
   - pip install -q ansible molecule apache-libcloud
@@ -21,10 +23,12 @@ before_script:
   - ansible --version && ansible-lint --version && molecule --version
 
 script:
-  - molecule test
+  - molecule --debug test
+#  - molecule test
 
 after_script:
-  - molecule destroy
+  - molecule --debug destroy
+#  - molecule destroy
 
 notifications:
   slack:
