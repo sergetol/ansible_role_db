@@ -1,13 +1,13 @@
 language: python
 python:
-  - '3.6'
+- '3.6'
 install:
-  - pip install -q ansible molecule apache-libcloud
+- pip install -q ansible molecule apache-libcloud
 before_script:
-  - ansible --version && ansible-lint --version && molecule --version
+- ansible --version && ansible-lint --version && molecule --version
 script:
-  - echo OK
+- echo OK
 notifications:
   slack:
     rooms:
-      secure: lLXwuAE6T6n5mN0Waht347iWhc9/ww2sFugd6NihCkEyokoMr7tfVCZdDfhRBfygdvOy7MXMiO898BGak6PHU7v7NJbQAj/WWVNbI9Flwlns+wuHE3APOlLDYJN+NxM3HFV4W1wNFbesWEiIIaJfHePoJh4XPe7xz1AGZi9/FKDEJOLFCk++8/az2RuqrRBu3EUlXrTz2v31NuT4BAP7ctoakS+jP2GSeNnu+nLSGY69OCNsq2DS3pne6h1e68UE5DgEoh7JDjUSOCoLt5r+viRMV4fvj4OJhDuiEYa5kwBtZNJY73KdfU8I7YUoff5aOocyp9Z5vk64lqRYW0o58d/tzFNrTzgvlILAzVfFXuA89KjTwRkp8XZu22tiQRSy4tgZU12vmkl9M2K8rgqWNyox8CZ9qd3RexOUfF1fr7sxyAR3h5JFGG1RXysVPOqkXoXR4DNL+lqHp5SWEHDA1+1zfuDAyCyt4UvHFKqT3lCt4UJrb+SlsQ6Q4CGU3tkTRTi8HqObBIqClmqTbRJWDLCxqrtpUsi7FmJXRkHMnTVwNcHrATkwKOJj8hjhER+h611swERjdbqz6wncZkZek50LuNo4p8WLy73sGQGqtghSYuBPBvk3V0XJzTCaNPOMI4/kEkHL5CoslrecujjqdNanT/imkTNalYBTPVitFIM=
+      secure: Ix1wlwSkvzjglQ6JzvjGKSoc1ibDWhoYZuLd3qCFm6E+S2TEmJqWXRJaJOLdpixQwCcXd9Sv8C4IG71Pi/XaBzfFCjy54mboGypoyXvBhyL3rd6pwWKHRrF30SL8EjrxlKOIYiSmSoTZqbf7czxkqeWZJRcjekR41Y61A80peu2r1XP39je2riq468QKLKec84Mxgp8qFHffkwK4Zu6uw7v6XQKDwSsMC/+AsxzS+9/kDKd4/WNy1ro0jCG8hD2mFT9tDM3IZqR8E5/DnYcKr1uZ5t3WPPuvmqxdymc7YfQEvMIwKIFUIrw3XXNVM6L9UNHMY4DXBst32ISGlJWqfJ3DMBKiIqTIEU1YB8S5bG4A/+tA1NB4CjQ7HKQPiKOd25bs+4lJqnS7hDRYDjCrCbcwnLqj+IXEsDfNI4ZL3KF0bbu82A0JgLnR7zH0CSaxzoHy2QxRd6OYzZXV79LTQYYr+iNyO2dFBNBt0BZljZOFkfqkS0U8gfs5pcXIlV2QyvOsTs0VxSCFJGdsbrfkkc46huU1gzlkm1Y2UuB6YGxJFLPkKddUtSZHSgbywrLceQPVAutJtupHEOJfQN55qth01o7rUoHKsFXjRMMv4gO++2sxsecKN6T3J5s7xoFj1VoE26De1Fyi+v7Bvo0ijIkMp43w+Pc+eIws48UO5oI=
