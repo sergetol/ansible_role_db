@@ -9,7 +9,7 @@ env:
     - secure: AZ2L0HD8aVKPmBobG9aVSory+FX57uNa4RWFCaRsGiJq7uIYQBMPcyqXF9BYTNlrx4+8Bwe+7gEeSncAQFQVa/qaJbPN9kIucJ3g93GQhiKuENGmliw5RzhiWTUOCHt48WrKADmbH1UxzYBiEe/LcJWhR2wTLUQqNqjWm3Ii4pxYhz4odjYycq5bhX3gR66igD/e2Z1Dee9kCYeUzhJAAw0ADq4FE2WoHooWyBO4bjJ8RtuNCBUCEFBaUuSO83EFe4Wy1F4SN7CFc6L57EPRd4jf5ik2XxCSLNwICZ46tVwCNSTNb2Sq7tuXvFdcCfFuQ7GVGQKuZS/afohrAv6Bh1S72BiHE3+Mt+3euzpCcxQ2+xdH4nYlliAZxyFlHZOjEWmcKMTla2MURsPvle3N2DfFx3m0INBtpOh6XLeIInkZAXemOFsA6KFXD0t3VVPKDng44ad7x6JXaafg3LuLXWPKGb1fwSoBMj1gM5X6lVeFpcr4lwbd9+vknGES6+0zilA8vdIkRAKA3s6cDhfGRSO5YTeWafuIVuSzYQYqn3GTPSiWGEbC9sNexMCyAcWRAHYb4/GtgYG9KrhirU4NYFCZvf1q1K710mTMQC21gI2k3yMqfM+8LrTag4Xuo3ZHgxUJPeiW5TPXwcMDj8XgXJ2hd82t+1138Cfrl083nOk=
     - secure: PHaGbXwyfhaRL4eID1ICDNfe1zfTtD/CT4/MZPM+PNFoL6JxUjrP+S6z0CeOyysc11VI9DBueVUmp5gng6ug1/cBnC6AFGrVqDkEpmaPALAcZIL2CorB2nrjQHQr5G9TgL0giyEhDrRj4IjHGbiybnmH12TXVyE5U8+DI8Oz00Y+zEmSj+c/yn77GsMldluWTaKklvNBfSKPvAFIomIrn2MSnvDqypH8KoT2H1nTwgHC2Lji7jfkyeKH8qpU9FugOOs+ToaScxPZfq92r1ytR0gLgyDE1rQpMhWd6rsiu3QY8DQRKifNzx1yTTim5P8spCH6T1Z+8VC6nN4okHFquQy6ulcY8tcv2xWYlAlOsHlxLJoBdhPg7PsTq8QTdxNm2CdBgZaNq9wjsRBvTZaoy8x5cb6GGsQSP9IJylM9TOTkeVPyIYNgFc3KEHKDDifxWEBaIw7A3PIQ7YoyFpDC4pbF3Jy3Ox3uzJ2bbVlAPFsTjphnjjeX2yBaBVP6Y7Tgo1/9NAlwlHqcMID0NfkkUS02m9JCByFJq2Ur2v6XU+jNd3DU8UkYijsFjf/l3suJwz+dD5hNf3HCyqEj9G9Ngzcu8miokvaRq7WjPDr1gIjy7LqStGgGOIxxj+kM7+1yxA6qfYKGOdGeOlvuUbYE1fDB5e14+rBGaKqnYoQm19s=
     - secure: nFJPj9pGQiZ7OuVqiYLGjo2AS/KJEZVkU4kgRzgerXE8rUUBTei7PwbXbIo+22qEev2QsxSIl2Q1p7y/2+O+La4Gz1dVEjKqIbgCCssD3RYxh1oBGmDDMzY2D/XlrhWruZVA0k5oOJyAuwctsowiPocPJkoh4WatppxWkJD24WyqBEGfpgOkFwwAgpux+fezirnqi9HXOIJhFILSt0A61iLKdcQdF67jCMMlaR+FE23McwTl8brPDLdr2upeG8cPlFQwIWCh01htyXB9NAm8eeVxQMaxlEbhECMjgMDfAfTVgpv1uIFBFCz1SWeQJhC075UcTMZJPa6lxwVobin1lEVNxrU327hVo82xGxdgrY/K74F/19EnaxMdCYkRnooKCwNwe1U7Gt+Xr9ySAK+9lPoysA/LdOe+KbCWoTDpEzrKWVW/kWpxO8HTgz/5rj3oDhyWv4qnPpHitHGKYQ/Kd4xfSrnrRstuGdPI8WGVg0GkUBLnsYJMYeHV82PY5Nj/Aiz9gayyO3fvVync+jlmtREW3KB8gAcoi+W8XI2kGpVpqHxSPt+3jT9LNOpQvtqPY8QSXsM/QqOdqek7QM3ra9JLeEJhDNtamhF1jBgRC5MByLeU08Z7Jp06tULcoBl8Nw0CxIR5Nk4wvCH70VOskvfurjr2f/2GujS0o6S+2FY=
-    - MOLECULE_NO_LOG=0
+#    - MOLECULE_NO_LOG=0
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_ed371e731034_key -iv $encrypted_ed371e731034_iv -in gce.tar.enc -out gce.tar -d
@@ -25,10 +25,12 @@ before_script:
   - ansible --version && ansible-lint --version && molecule --version
 
 script:
-  - molecule --debug test
+#  - molecule --debug test --destroy never
+  - molecule test --destroy never
 
 after_script:
-  - molecule --debug destroy
+#  - molecule --debug destroy
+  - molecule destroy
 
 notifications:
   slack:
