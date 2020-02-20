@@ -19,7 +19,7 @@ before_install:
   - pwd && ls -a
 
 install:
-  - pip install -q ansible molecule apache-libcloud
+  - pip install ansible molecule apache-libcloud
 
 before_script:
   - ansible --version && ansible-lint --version && molecule --version
